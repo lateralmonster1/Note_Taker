@@ -1,68 +1,98 @@
-html,
-body {
+
+html, body {
   height: 100%;
   margin: 0;
   padding: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f8f9fa;
 }
 
-.save-note, .new-note, .clear-btn {
-  display: none;
+
+.navbar {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-brand {
+  font-size: 1.5rem;
 }
 
 .icons {
   margin-left: 15px;
   margin-right: 15px;
   font-size: 1.5rem;
-  cursor: pointer;
+  cursor: pointer;1
 }
 
-.note-textarea,
-.note-title {
-  color: #000000;
+
+.note-form {
+  margin-top: 20px;
+}
+
+.note-title,
+.note-textarea {
+  color: #000;
   width: 100%;
   outline: none;
-  border: none;
+  border: 1px solid #ced4da;
+  border-radius: 5px;
+  padding: 10px;
+  font-size: 1.1rem;
+  background-color: #fff;
+}
+
+.note-title {
+  margin-bottom: 15px;
+  font-size: 1.5rem;
 }
 
 .note-textarea {
+  height: calc(100vh - 180px);
   resize: none;
-  height: calc(100% - 63px);
-  padding-top: 15px;
 }
 
-.note-title {
-  height: 50px;
-  margin-top: 13px;
-  font-size: 3rem;
+
+.note-title::placeholder,
+.note-textarea::placeholder {
+  color: #adb5bd;
 }
 
 .note-title:read-only,
 .note-textarea:read-only {
-  color: #757575;
+  color: #6c757d;
+  background-color: #e9ecef;
+}
+
+
+.container-fluid {
+  padding-top: 20px;
 }
 
 .list-container .card {
   height: calc(100vh - 70px);
-  border-bottom: none;
-  border-bottom-right-radius: 0;
-  border-bottom-left-radius: 0;
+  border: none;
+  border-radius: 0;
+  overflow-y: auto;
 }
 
-.list-container {
-  padding-left: 0;
+.list-group-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: none;
+  padding: 20px;
+  cursor: pointer;
 }
 
-.list-container .list-group,
-.list-container .list-group-item:first-child,
-.list-container .card {
-  border-top: none;
-  border-top-right-radius: 0;
-  border-top-left-radius: 0;
+.list-group-item:hover {
+  background-color: #e2e6ea;
 }
 
 .list-item-title {
   display: inline-block;
   width: 75%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .list-container i {
@@ -75,4 +105,29 @@ body {
   border-right: none;
   padding: 20px;
   cursor: pointer;
+}
+
+
+.save-note, .new-note, .clear-btn {
+  display: none;
+}
+
+.btn-outline-light {
+  margin-left: 10px;
+}
+
+.btn-outline-light:hover {
+  background-color: #6c757d;
+  border-color: #6c757d;
+  color: #fff;
+}
+
+.btn-outline-danger {
+  margin-left: 10px;
+}
+
+.btn-outline-danger:hover {
+  background-color: #dc3545;
+  border-color: #dc3545;
+  color: #fff;
 }

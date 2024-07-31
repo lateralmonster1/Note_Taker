@@ -4,6 +4,7 @@ let noteText;
 let saveNoteBtn;
 let newNoteBtn;
 let noteList;
+let clearBtn;
 
 if (window.location.pathname === '/notes') {
   noteForm = document.querySelector('.note-form');
@@ -15,11 +16,9 @@ if (window.location.pathname === '/notes') {
   noteList = document.querySelectorAll('.list-container .list-group');
 }
 
-
 const show = (elem) => {
   elem.style.display = 'inline';
 };
-
 
 const hide = (elem) => {
   elem.style.display = 'none';
@@ -82,9 +81,7 @@ const handleNoteSave = () => {
   });
 };
 
-
 const handleNoteDelete = (e) => {
-  
   e.stopPropagation();
 
   const note = e.target;
@@ -106,25 +103,11 @@ const handleNoteView = (e) => {
   renderActiveNote();
 };
 
-
 const handleNewNoteView = (e) => {
   activeNote = {};
   show(clearBtn);
   renderActiveNote();
 };
-
-
-const handleRenderBtns = () => {
-  show(clearBtn);
-  if (!noteTitle.value.trim() && !noteText.value.trim()) {
-    hide(clearBtn);
-  } else if (!noteTitle.value.trim() || !noteText.value.trim()) {
-    hide(saveNoteBtn);
-  } else {
-    show(saveNoteBtn);
-  }
-};
-
 
 const renderNoteList = async (notes) => {
   let jsonNotes = await notes.json();
@@ -133,7 +116,6 @@ const renderNoteList = async (notes) => {
   }
 
   let noteListItems = [];
-
 
   const createLi = (text, delBtn = true) => {
     const liEl = document.createElement('li');
@@ -179,6 +161,16 @@ const renderNoteList = async (notes) => {
   }
 };
 
+const handleRenderBtns = () => {
+  show(clearBtn);
+  if (!noteTitle.value.trim() && !noteText.value.trim()) {
+    hide(clearBtn);
+  } else if (!noteTitle.value.trim() || !noteText.value.trim()) {
+    hide(saveNoteBtn);
+  } else {
+    show(saveNoteBtn);
+  }
+};
 
 const getAndRenderNotes = () => getNotes().then(renderNoteList);
 

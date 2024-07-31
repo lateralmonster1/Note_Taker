@@ -4,9 +4,8 @@ let noteText;
 let saveNoteBtn;
 let newNoteBtn;
 let noteList;
-let clearBtn;
 
-if (window.location.pathname === '/notes') {
+if (window.location.pathname === '/notes.html') {
   noteForm = document.querySelector('.note-form');
   noteTitle = document.querySelector('.note-title');
   noteText = document.querySelector('.note-textarea');
@@ -16,9 +15,11 @@ if (window.location.pathname === '/notes') {
   noteList = document.querySelectorAll('.list-container .list-group');
 }
 
+
 const show = (elem) => {
   elem.style.display = 'inline';
 };
+
 
 const hide = (elem) => {
   elem.style.display = 'none';
@@ -81,7 +82,9 @@ const handleNoteSave = () => {
   });
 };
 
+
 const handleNoteDelete = (e) => {
+  
   e.stopPropagation();
 
   const note = e.target;
@@ -103,19 +106,22 @@ const handleNoteView = (e) => {
   renderActiveNote();
 };
 
+
 const handleNewNoteView = (e) => {
   activeNote = {};
   show(clearBtn);
   renderActiveNote();
 };
 
+
 const renderNoteList = async (notes) => {
   let jsonNotes = await notes.json();
-  if (window.location.pathname === '/notes') {
+  if (window.location.pathname === '/notes.html') {
     noteList.forEach((el) => (el.innerHTML = ''));
   }
 
   let noteListItems = [];
+
 
   const createLi = (text, delBtn = true) => {
     const liEl = document.createElement('li');
@@ -156,11 +162,10 @@ const renderNoteList = async (notes) => {
     noteListItems.push(li);
   });
 
-  if (window.location.pathname === '/notes') {
+  if (window.location.pathname === '/notes.html') {
     noteListItems.forEach((note) => noteList[0].append(note));
   }
 };
-
 const handleRenderBtns = () => {
   show(clearBtn);
   if (!noteTitle.value.trim() && !noteText.value.trim()) {
@@ -174,7 +179,7 @@ const handleRenderBtns = () => {
 
 const getAndRenderNotes = () => getNotes().then(renderNoteList);
 
-if (window.location.pathname === '/notes') {
+if (window.location.pathname === '/notes.html') {
   saveNoteBtn.addEventListener('click', handleNoteSave);
   newNoteBtn.addEventListener('click', handleNewNoteView);
   clearBtn.addEventListener('click', renderActiveNote);
